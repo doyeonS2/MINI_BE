@@ -13,7 +13,7 @@ public class ItemDAO {
     private PreparedStatement pstmt = null;
 
     // 전체브랜드 or 선택브랜드
-    public List<ItemVO> itemSelect(String reqBrand, String reqSort) {
+    public List<ItemVO> itemSelect(String reqBrand) {
         List<ItemVO> list = new ArrayList<>();
         try {
             conn = Common.getConnection();

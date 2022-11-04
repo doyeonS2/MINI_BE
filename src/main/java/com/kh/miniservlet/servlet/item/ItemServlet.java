@@ -49,7 +49,7 @@ public class ItemServlet extends HttpServlet {
         }
         ItemDAO dao = new ItemDAO();
 //		List<ItemVO> list = dao.itemSelect(reqBrand);
-        List<ItemVO> list = dao.itemSelect(reqBrand, reqSort);
+        List<ItemVO> list = dao.itemSelect(reqBrand);
         // 브랜드만 받아오기
 
         JSONArray itemArray = new JSONArray();
