@@ -18,10 +18,10 @@ public class SignUpDAO {
 
     // 회원가입 관련 메소드 만들기
 
-    // 회원가입 체크
-    public boolean memberRegister(String id, String pwd, String pwdCheck, String memName, String email, String emailName, String phone1, String phone2, String phone3, String phoneNum, String addrNum, String addr1, String addr2, String getRegDate) {
+    // 회원가입
+    public boolean memberRegister(String id, String pwd, String pwdCheck, String memName, String email, String phone, String addr, String RegDate) {
         int result = 0;
-        String sql = "INSERT INTO MEM_TB(ID, PASSWORD, NAME, EMAIL, PHONE, ADDR, JOIN) VALUES(?, ?, ?, ?, ?, ?, SYSDATE)";
+        String sql = "INSERT INTO MEM_TB(ID, PASSWORD, NAME, EMAIL, PHONE, ADDR, JOIN) VALUES(?, ?, ?, ?, ?, ?, ?, SYSDATE)";
         try {
             conn = Common.getConnection();
             pstmt = conn.prepareStatement(sql);
@@ -30,14 +30,9 @@ public class SignUpDAO {
             pstmt.setString(3, pwdCheck);
             pstmt.setString(4, memName);
             pstmt.setString(5, email);
-            pstmt.setString(6, emailName);
-            pstmt.setString(7, phone1);
-            pstmt.setString(8, phone2);
-            pstmt.setString(9, phone3);
-            pstmt.setString(10, phoneNum);
-            pstmt.setString(11, addrNum);
-            pstmt.setString(12, addr1);
-            pstmt.setString(13, addr2);
+            pstmt.setString(6, phone);
+            pstmt.setString(7, addr);
+            pstmt.setString(8, RegDate);
 
             result = pstmt.executeUpdate(); // 디비에 값을 저장
             System.out.println("회원 가입 DB 결과 확인 : " + result);
@@ -53,6 +48,7 @@ public class SignUpDAO {
         else return false;
     }
 
+    // 아이디 중복확인
     public boolean IdCheck(String id) {
         boolean isNotReg = false; // 기본 값이 false(가입된 경우)
         try {
