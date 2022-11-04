@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+// 도연 작업중
+
 @RestController
 @CrossOrigin(origins = "http://localhost:3000") // 3000번에 대한 cors 허용
 public class SignUpServlet extends HttpServlet {
@@ -26,18 +28,12 @@ public class SignUpServlet extends HttpServlet {
         String getPwdCheck = (String)jsonObj.get("pwdCheck");
         String getMemName = (String)jsonObj.get("memName");
         String getEmail = (String)jsonObj.get("email");
-        String getEmailName = (String)jsonObj.get("emailName");
-        String getPhone1 = (String)jsonObj.get("phone1");
-        String getPhone2 = (String)jsonObj.get("phone2");
-        String getPhone3 = (String)jsonObj.get("phone3");
-        String getPhoneNum = (String)jsonObj.get("phoneNum");
-        String getAddrNum = (String)jsonObj.get("addrNum");
-        String getAddr1 = (String)jsonObj.get("addr1");
-        String getAddr2 = (String)jsonObj.get("addr2");
+        String getPhone = (String)jsonObj.get("phone");
+        String getAddr = (String)jsonObj.get("addr");
         String getRegDate = (String)jsonObj.get("regDate");
 
         SignUpDAO dao = new SignUpDAO();
-        boolean rstComplete = dao.memberRegister(getId, getPwd, getPwdCheck, getMemName, getEmail, getEmailName, getPhone1, getPhone2, getPhone3, getPhoneNum, getAddrNum, getAddr1, getAddr2, getRegDate ); // memberRegister : DAO라는 객체에 있는 메소드(MemberDAO 파일에 메소드 만들어야 함)
+        boolean rstComplete = dao.memberRegister(getId, getPwd, getPwdCheck, getMemName, getEmail, getPhone, getAddr, getRegDate ); // memberRegister : DAO라는 객체에 있는 메소드(MemberDAO 파일에 메소드 만들어야 함)
 
         PrintWriter out = response.getWriter();
         JSONObject resJson = new JSONObject();
