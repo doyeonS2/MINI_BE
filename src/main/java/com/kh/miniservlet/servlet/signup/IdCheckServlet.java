@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+// 도연 작업중 - 아이디 중복체크
 @RestController
 @CrossOrigin(origins = "http://localhost:3000") // 3000번에 대한 cors 허용
 public class IdCheckServlet extends HttpServlet {

@@ -15,6 +15,6 @@ public class MemberVO {
     private String memName; // 회원 이름
     private String email; // 회원 이메일
     private String phone; // 회원 전화번호
-    private String addr1; // 주소
+    private String addr; // 주소
     private Date regDate; // 회원 가입일, 변환해줘야 함
 }

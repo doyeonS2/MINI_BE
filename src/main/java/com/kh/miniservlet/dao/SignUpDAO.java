@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+// 도연 작업중 - 회원가입 관련
+
 //DB와 연결하는 부분 만들어주기
 //노션 DATABASE -> JDBC 구현 순서 참고
 public class SignUpDAO {
@@ -21,18 +23,16 @@ public class SignUpDAO {
     // 회원가입
     public boolean memberRegister(String id, String pwd, String pwdCheck, String memName, String email, String phone, String addr, String RegDate) {
         int result = 0;
-        String sql = "INSERT INTO MEM_TB(ID, PASSWORD, NAME, EMAIL, PHONE, ADDR, JOIN) VALUES(?, ?, ?, ?, ?, ?, ?, SYSDATE)";
+        String sql = "INSERT INTO MEM_TB(ID, PASSWORD, NAME, EMAIL, PHONE, ADDR, JOIN) VALUES(?, ?, ?, ?, ?, ?, SYSDATE)";
         try {
             conn = Common.getConnection();
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, id); // 첫번째 물음표에 id 들어감
             pstmt.setString(2, pwd); // 두번째에는 pwd
-            pstmt.setString(3, pwdCheck);
-            pstmt.setString(4, memName);
-            pstmt.setString(5, email);
-            pstmt.setString(6, phone);
-            pstmt.setString(7, addr);
-            pstmt.setString(8, RegDate);
+            pstmt.setString(3, memName);
+            pstmt.setString(4, email);
+            pstmt.setString(5, phone);
+            pstmt.setString(6, addr);
 
             result = pstmt.executeUpdate(); // 디비에 값을 저장
             System.out.println("회원 가입 DB 결과 확인 : " + result);

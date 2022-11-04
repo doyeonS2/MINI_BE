@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-// 도연 작업중
+// 도연 작업중 - 회원가입
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000") // 3000번에 대한 cors 허용
@@ -40,8 +40,6 @@ public class SignUpServlet extends HttpServlet {
         if(rstComplete) resJson.put("result", "OK");
         else resJson.put("result", "NOK");
         out.print(resJson);
-
-
 
 
     }

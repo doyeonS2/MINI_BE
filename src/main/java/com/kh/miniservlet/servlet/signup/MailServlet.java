@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+// 여기는 테스트 파일..!
 @RestController
 @CrossOrigin(origins = "http://localhost:3000") // 3000번에 대한 cors 허용
 

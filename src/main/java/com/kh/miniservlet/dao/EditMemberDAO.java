@@ -19,7 +19,7 @@ public class EditMemberDAO {
         String name = merberVO.getMemName();
         String email = merberVO.getEmail();
         String phone = merberVO.getPhone();
-        String addr = merberVO.getAddr1();
+        String addr = merberVO.getAddr();
 
         try {
 
