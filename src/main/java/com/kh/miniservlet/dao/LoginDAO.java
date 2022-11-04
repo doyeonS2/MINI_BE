@@ -99,6 +99,25 @@ public class LoginDAO {
         return false;
     }
 
+    // 비밀번호 재설정 기능
+    public boolean rePwd(String id, String pwd) {
+        int result = 0;
+        String sql = "UPDATE MEM_TB SET PASSWORD = ? WHERE ID = ?";
+        try {
+            conn = Common.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, pwd);
+            pstmt.setString(2, id);
+            result = pstmt.executeUpdate();
 
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        Common.close(pstmt);
+        Common.close(conn);
 
+        if(result == 1) return true;
+        else return false;
+    }
+    // 난수로 임시 비밀번호 생성해서 모달창에 띄워주고 임시 비밀번호로 업데이트 하고싶다^0^...
 }
