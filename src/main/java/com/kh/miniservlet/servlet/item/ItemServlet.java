@@ -27,6 +27,7 @@ public class ItemServlet extends HttpServlet {
             throws IOException {
         // 한글 깨짐 방지를 위해서 설정
         request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
         // 요청 메시지 받기
         StringBuffer sb = Common.reqStringBuff(request);
         // 요청 받은 메시지 JSON 파싱
@@ -48,9 +49,7 @@ public class ItemServlet extends HttpServlet {
             return;
         }
         ItemDAO dao = new ItemDAO();
-//		List<ItemVO> list = dao.itemSelect(reqBrand);
-        List<ItemVO> list = dao.itemSelect(reqBrand);
-        // 브랜드만 받아오기
+        List<ItemVO> list = dao.itemSelect(reqBrand, reqSort);
 
         JSONArray itemArray = new JSONArray();
         for (ItemVO e : list) {

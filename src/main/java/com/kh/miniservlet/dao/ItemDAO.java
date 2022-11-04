@@ -13,37 +13,57 @@ public class ItemDAO {
     private PreparedStatement pstmt = null;
 
     // 전체브랜드 or 선택브랜드
-    public List<ItemVO> itemSelect(String reqBrand) {
+    public List<ItemVO> itemSelect(String reqBrand, String reqSort) {
         List<ItemVO> list = new ArrayList<>();
         try {
             conn = Common.getConnection();
             stmt = conn.createStatement();
             String sql = null;
 
-//			// 브랜드 선택 쿼리
-            if (reqBrand.equals("ALL")) sql = "SELECT * FROM PRO_TB";
-            else sql = "SELECT * FROM PRO_TB WHERE BRAND = " + "'" + reqBrand + "'";
-//
-//			// 브랜드 선택 + 정렬 쿼리
-//			if (reqBrand.equals("ALL")) {
-//				sql = "SELECT * FROM PRO_TB";
-//				if (reqSort.equals("NEW_DATE")) {
-//					sql = "SELECT * FROM PRO_TB ORDER BY LAUN_DATE DESC";
-//				} else if (reqSort.equals("HIGH_PRICE")) {
-//						sql = "SELECT * FROM PRO_TB ORDER BY PRICE DESC";
-//				} else sql = "SELECT * FROM PRO_TB ORDER BY PRICE ASC";
-//			}
-//			else sql = "SELECT * FROM PRO_TB WHERE BRAND = " + "'" + reqBrand + "'"; {
-//				if (reqSort.equals("NEW_DATE")) {
-//					sql = "SELECT * FROM PRO_TB ORDER BY LAUN_DATE DESC";
-//				} else if (reqSort.equals("HIGH_PRICE")) {
-//						sql = "SELECT * FROM PRO_TB ORDER BY PRICE DESC";
-//				} else sql = "SELECT * FROM PRO_TB ORDER BY PRICE ASC";
-//			}
-
-//			if (reqBrand.equals("ALL")) {
-//				sql = "SELECT * FROM PRO_TB ORDER BY LAUN_DATE DESC";
-//			} else sql = "SELECT * FROM PRO_TB WHERE BRAND = " + "'" + reqBrand + "'";
+			// 브랜드 선택 + 정렬 쿼리
+			if (reqBrand.equals("ALL")) {
+				sql = "SELECT * FROM PRO_TB";
+				if (reqSort.equals("NEW_DATE")) {
+					sql = "SELECT * FROM PRO_TB ORDER BY LAUN_DATE DESC";
+				} else if (reqSort.equals("HIGH_PRICE")) {
+						sql = "SELECT * FROM PRO_TB ORDER BY PRICE DESC";
+				} else sql = "SELECT * FROM PRO_TB ORDER BY PRICE ASC";
+			}
+			else if(reqBrand.equals("NIKE")) {
+                if (reqSort.equals("NEW_DATE")) {
+                    sql = "SELECT * FROM PRO_TB where brand = \'NIKE\' ORDER BY LAUN_DATE DESC";
+                } else if (reqSort.equals("HIGH_PRICE")) {
+                    sql = "SELECT * FROM PRO_TB where brand = \'NIKE\' ORDER BY PRICE DESC";
+                } else sql = "SELECT * FROM PRO_TB where brand = \'NIKE\' ORDER BY PRICE";
+            }
+            else if(reqBrand.equals("CONVERSE")) {
+                if (reqSort.equals("NEW_DATE")) {
+                    sql = "SELECT * FROM PRO_TB where brand = \'CONVERSE\' ORDER BY LAUN_DATE DESC";
+                } else if (reqSort.equals("HIGH_PRICE")) {
+                    sql = "SELECT * FROM PRO_TB where brand = \'CONVERSE\' ORDER BY PRICE DESC";
+                } else sql = "SELECT * FROM PRO_TB where brand = \'CONVERSE\' ORDER BY PRICE";
+            }
+            else if(reqBrand.equals("ADIDAS")) {
+                if (reqSort.equals("NEW_DATE")) {
+                    sql = "SELECT * FROM PRO_TB where brand = \'ADIDAS\' ORDER BY LAUN_DATE DESC";
+                } else if (reqSort.equals("HIGH_PRICE")) {
+                    sql = "SELECT * FROM PRO_TB where brand = \'ADIDAS\' ORDER BY PRICE DESC";
+                } else sql = "SELECT * FROM PRO_TB where brand = \'ADIDAS\' ORDER BY PRICE";
+            }
+            else if(reqBrand.equals("NEW BALANCE")) {
+                if (reqSort.equals("NEW_DATE")) {
+                    sql = "SELECT * FROM PRO_TB where brand = \'NEW BALANCE\' ORDER BY LAUN_DATE DESC";
+                } else if (reqSort.equals("HIGH_PRICE")) {
+                    sql = "SELECT * FROM PRO_TB where brand = \'NEW BALANCE\' ORDER BY PRICE DESC";
+                } else sql = "SELECT * FROM PRO_TB where brand = \'NEW BALANCE\' ORDER BY PRICE";
+            }
+            else if(reqBrand.equals("VANS")) {
+                if (reqSort.equals("NEW_DATE")) {
+                    sql = "SELECT * FROM PRO_TB where brand = \'VANS\' ORDER BY LAUN_DATE DESC";
+                } else if (reqSort.equals("HIGH_PRICE")) {
+                    sql = "SELECT * FROM PRO_TB where brand = \'VANS\' ORDER BY PRICE DESC";
+                } else sql = "SELECT * FROM PRO_TB where brand = \'VANS\' ORDER BY PRICE";
+            }
 
             rs = stmt.executeQuery(sql);
 

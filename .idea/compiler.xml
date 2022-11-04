@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="BE-IntelliJ" />
         <module name="BE(InterlliJ)" />
+        <module name="MINI_BE_IJ" />
         <module name="BE(intelliJ)" />
         <module name="Project_Backend_스니커조_인텔리제이" />
         <module name="mini-servlet" />
@@ -20,6 +21,7 @@
       <module name="BE(InterlliJ)" options="-parameters" />
       <module name="BE(intelliJ)" options="-parameters" />
       <module name="BE-IntelliJ" options="-parameters" />
+      <module name="MINI_BE_IJ" options="-parameters" />
       <module name="Project_Backend_스니커조_인텔리제이" options="-parameters" />
       <module name="mini-servlet" options="-parameters" />
     </option>
