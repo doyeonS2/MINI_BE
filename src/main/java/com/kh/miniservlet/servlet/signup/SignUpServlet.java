@@ -25,15 +25,14 @@ public class SignUpServlet extends HttpServlet {
         JSONObject jsonObj = Common.getJsonObj(sb); // 요청 받은 메시지 JSON 파싱
         String getId = (String)jsonObj.get("id");
         String getPwd = (String)jsonObj.get("pwd");
-        String getPwdCheck = (String)jsonObj.get("pwdCheck");
         String getMemName = (String)jsonObj.get("memName");
         String getEmail = (String)jsonObj.get("email");
         String getPhone = (String)jsonObj.get("phone");
         String getAddr = (String)jsonObj.get("addr");
-        String getRegDate = (String)jsonObj.get("regDate");
+
 
         SignUpDAO dao = new SignUpDAO();
-        boolean rstComplete = dao.memberRegister(getId, getPwd, getPwdCheck, getMemName, getEmail, getPhone, getAddr, getRegDate ); // memberRegister : DAO라는 객체에 있는 메소드(MemberDAO 파일에 메소드 만들어야 함)
+        boolean rstComplete = dao.memberRegister(getId, getPwd, getMemName, getEmail, getPhone, getAddr); // memberRegister : DAO라는 객체에 있는 메소드(MemberDAO 파일에 메소드 만들어야 함)
 
         PrintWriter out = response.getWriter();
         JSONObject resJson = new JSONObject();

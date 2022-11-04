@@ -21,7 +21,7 @@ public class SignUpDAO {
     // 회원가입 관련 메소드 만들기
 
     // 회원가입
-    public boolean memberRegister(String id, String pwd, String pwdCheck, String memName, String email, String phone, String addr, String RegDate) {
+    public boolean memberRegister(String id, String pwd, String memName, String email, String phone, String addr) {
         int result = 0;
         String sql = "INSERT INTO MEM_TB(ID, PASSWORD, NAME, EMAIL, PHONE, ADDR, JOIN) VALUES(?, ?, ?, ?, ?, ?, SYSDATE)";
         try {
