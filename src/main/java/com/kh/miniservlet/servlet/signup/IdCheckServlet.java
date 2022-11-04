@@ -2,6 +2,7 @@ package com.kh.miniservlet.servlet.signup;
 
 import com.kh.miniservlet.common.Common;
 import com.kh.miniservlet.dao.SignUpDAO;
+import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
