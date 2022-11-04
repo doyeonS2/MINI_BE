@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="BE-IntelliJ" />
+        <module name="BE(InterlliJ)" />
+        <module name="BE(intelliJ)" />
+        <module name="mini-servlet" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="BE(InterlliJ)" options="-parameters" />
+      <module name="BE(intelliJ)" options="-parameters" />
+      <module name="BE-IntelliJ" options="-parameters" />
+      <module name="mini-servlet" options="-parameters" />
+    </option>
+  </component>
+</project>
