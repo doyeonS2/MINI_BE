@@ -22,9 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-/**
- * Servlet implementation class boardListServlet
- */
+
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class BoardListServlet extends HttpServlet {

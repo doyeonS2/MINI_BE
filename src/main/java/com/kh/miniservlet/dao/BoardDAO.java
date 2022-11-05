@@ -64,17 +64,21 @@ public class BoardDAO {
 // 글쓰기 등록 기능
 // 글쓰기 성공시 1리턴, 실패시 0리
 
-    public boolean boardRegister(Integer docNum, Integer category, String title, String content, String id) {
+    public boolean boardRegister(String docNum, String category, String title, String content, String id) {
         int result = 0;
-        String sql = "INSERT INTO BOARD(DOC_NUM, CATEGORY, TITLE, CONTENT, ID, WRITE_DATE) VALUES(?, ?, ?, ?, ?,SYSDATE)";
+        String sql = "INSERT INTO BOARD VALUES(?, ?, ?, ?, ?,SYSDATE)";
         try {
+            // String 으로 받아온 값을 Int형으로 변경해준다
+            int newDocNum = Integer.parseInt(docNum);
+            int newCategory = Integer.parseInt(category);
+
             conn = Common.getConnection();
             pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, docNum);
-            pstmt.setInt(2, category);
+            pstmt.setInt(1, newDocNum);
+            pstmt.setInt(2, newCategory);
             pstmt.setString(3, title);
             pstmt.setString(4, content);
-            pstmt.setString(4, id);
+            pstmt.setString(5, id);
             result = pstmt.executeUpdate();
             System.out.println("글쓰기 DB 결과 확인 : " + result);
 
