@@ -23,7 +23,7 @@ public class SignUpDAO {
     // 회원가입
     public boolean memberRegister(String id, String pwd, String memName, String email, String phone, String addr) {
         int result = 0;
-        String sql = "INSERT INTO MEM_TB(ID, PASSWORD, NAME, EMAIL, PHONE, ADDR, JOIN) VALUES(?, ?, ?, ?, ?, ?, SYSDATE)";
+        String sql = "INSERT INTO MEM_TB(ID, PASSWORD, NAME, EMAIL, PHONE, ADDR, REG_DATE) VALUES(?, ?, ?, ?, ?, ?, SYSDATE)";
         try {
             conn = Common.getConnection();
             pstmt = conn.prepareStatement(sql);
