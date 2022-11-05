@@ -20,12 +20,15 @@ public class BoardDAO {
      *   List<MemberVO>
      */
 
-    public List<BoardVO> boardSelect() {
+    public List<BoardVO> boardSelect(String reqDocNum) {
+
         List<BoardVO> list = new ArrayList<>();
         try {
             conn = Common.getConnection();
             stmt = conn.createStatement();
-            String sql = "SELECT * FROM BOARD";
+            String sql = null; // sql문을 생성하고 들어오는 인자값 (reqId)에 따라
+            if(reqDocNum.equals("ALL")) sql = "SELECT * FROM BOARD";
+            else sql = "SELECT * FROM BOARD WHERE DOC_NUM = " + reqDocNum;
             rs = stmt.executeQuery(sql);
 
             while(rs.next()) {
@@ -56,55 +59,6 @@ public class BoardDAO {
 
         return list;
     }
-
-
-
-/*
-	 게시글 가져오기 기능
-	 게시글 고유번호로 찾기
-	 정보가 많으니 List<MemberVO>반환?
- */
-
-    public List<BoardVO> findBoard (Integer boardNum) {
-        List<BoardVO> list = new ArrayList<>();
-        try {
-            conn = Common.getConnection();
-            stmt = conn.createStatement();
-
-            String sql = "SELECT * FROM BOARD WHERE DOC_NUM = "+ boardNum;
-            rs = stmt.executeQuery(sql);
-
-            while(rs.next()) {
-                Integer docNum = rs.getInt("DOC_NUM");
-                Integer category = rs.getInt("CATEGORY");
-                String title = rs.getString("TITLE");
-                String content = rs.getString("CONTENT");
-                String id = rs.getString("ID");
-                Date writeDate = rs.getDate("WRITE_DATE");
-
-                BoardVO vo = new BoardVO();
-
-                vo.setBoardNum(docNum);
-                vo.setCategory(category);
-                vo.setTitle(title);
-                vo.setBoardContent(content);
-                vo.setId(id);
-                vo.setBoardDate(writeDate);
-                list.add(vo);
-            }
-
-            // 닫기
-            Common.close(rs);
-            Common.close(stmt);
-            Common.close(conn);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return list;
-    }
-
-
 
 
 // 글쓰기 등록 기능

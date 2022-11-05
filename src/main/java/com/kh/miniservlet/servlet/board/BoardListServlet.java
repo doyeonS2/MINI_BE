@@ -37,8 +37,13 @@ public class BoardListServlet extends HttpServlet {
         StringBuffer sb = Common.reqStringBuff(request);
         JSONObject jsonObj = Common.getJsonObj(sb);
 
+        // cmd와 docNum을 둘 다 받아온다
         String reqCmd = (String)jsonObj.get("cmd");
+        String reqDocNum = (String)jsonObj.get("docNum");
+        // println으로 잘 들어왔는지 확인한다
         System.out.println("cmd : " + reqCmd);
+        System.out.println("docNum : " + reqDocNum);
+
         PrintWriter out = response.getWriter();
 
         // 잘못 받아왔을 경우
@@ -51,7 +56,7 @@ public class BoardListServlet extends HttpServlet {
 
 
         BoardDAO dao = new BoardDAO();
-        List<BoardVO> list = dao.boardSelect();
+        List<BoardVO> list = dao.boardSelect(reqDocNum);
 
         // 제이슨 형식 어레이 생성
         JSONArray boardArray = new JSONArray();
@@ -72,6 +77,4 @@ public class BoardListServlet extends HttpServlet {
         out.print(boardArray);
 
     }
-
-
 }
