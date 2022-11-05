@@ -41,8 +41,6 @@ public class EditMemServlet extends HttpServlet {
         //int resState = dao.(getId, getPwd);
 
         PrintWriter out = response.getWriter();
-
-
         EditMemberDAO dao = new EditMemberDAO();
 
         // 현재 하나의 멤버 객체는 list에 있음
