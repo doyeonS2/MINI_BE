@@ -16,9 +16,6 @@ public class EditMemberDAO {
     private ResultSet rs = null;
     private PreparedStatement pstmt = null;
     // 회원 정보 수정을위한 정보 불러오기
-    // 로그인이 되어있는 상태면 회원정보 수정가능하도록
-    // 로그인이 안되어있는 상태면 로그인하도록
-    // 여기에 화면에 뿌려주기 위한 Select문이 필여함(복붙해서 셀렉트문으로 바꿔_)
     public List<MemberVO> MemInfo(String id) {
         int resState = 300; // 200은 로그인, 300은 Id없음, 400은 pwd 오류 => 이걸 정리한게 API문서
 
