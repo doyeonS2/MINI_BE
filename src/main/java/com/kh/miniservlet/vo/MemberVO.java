@@ -18,3 +18,4 @@ public class MemberVO {
     private String addr; // 주소
     private Date regDate; // 회원 가입일, 변환해줘야 함
 }
+
