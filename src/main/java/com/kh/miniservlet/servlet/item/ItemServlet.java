@@ -54,7 +54,7 @@ public class ItemServlet extends HttpServlet {
             return;
         }
         ItemDAO dao = new ItemDAO();
-        List<ItemVO> list = dao.itemSelect(reqBrand, reqSort, reqCode);
+        List<ItemVO> list = dao.itemSelect(reqCode, reqBrand, reqSort);
 
         JSONArray itemArray = new JSONArray();
         for (ItemVO e : list) {

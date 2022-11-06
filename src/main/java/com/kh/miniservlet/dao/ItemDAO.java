@@ -13,7 +13,7 @@ public class ItemDAO {
     private PreparedStatement pstmt = null;
 
     // 전체브랜드 or 선택브랜드
-    public List<ItemVO> itemSelect(String reqBrand, String reqSort, String reqCode) {
+    public List<ItemVO> itemSelect(String reqCode, String reqBrand, String reqSort) {
         List<ItemVO> list = new ArrayList<>();
         try {
             conn = Common.getConnection();
@@ -64,7 +64,7 @@ public class ItemDAO {
                     sql = "SELECT * FROM PRO_TB where brand = \'VANS\' ORDER BY PRICE DESC";
                 } else sql = "SELECT * FROM PRO_TB where brand = \'VANS\' ORDER BY PRICE";
             }
-            else {
+            else if(reqBrand.equals(reqCode)){
                 sql = "SELECT * FROM PRO_TB WHERE PRO_CODE = " + "'" + reqCode + "'";
             }
 
