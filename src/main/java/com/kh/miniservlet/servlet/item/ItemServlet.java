@@ -39,10 +39,12 @@ public class ItemServlet extends HttpServlet {
         String reqSort = (String)jsonObj.get("sort");
         String reqCode = (String)jsonObj.get("code");
 
-        System.out.println("검색 조건 : " + reqSort);
+
         System.out.println("명령어 : " + reqCmd);
+        System.out.println("상품코드 : " + reqCode);
         System.out.println("브랜드 : " + reqBrand);
-        System.out.println("브랜드 : " + reqCode);
+        System.out.println("검색 조건 : " + reqSort);
+
 
         PrintWriter out = response.getWriter();
         if(!reqCmd.equals("ItemInfo")) { // ItemInfo와 값이 다르면 NOT OK
@@ -52,7 +54,7 @@ public class ItemServlet extends HttpServlet {
             return;
         }
         ItemDAO dao = new ItemDAO();
-        List<ItemVO> list = dao.itemSelect(reqCode, reqBrand, reqSort);
+        List<ItemVO> list = dao.itemSelect(reqBrand, reqSort, reqCode);
 
         JSONArray itemArray = new JSONArray();
         for (ItemVO e : list) {
