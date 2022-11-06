@@ -2,6 +2,7 @@ package com.kh.miniservlet.servlet.item;
 
 import com.kh.miniservlet.common.Common;
 import com.kh.miniservlet.dao.ItemDAO;
+import com.kh.miniservlet.dao.ItemDetailDAO;
 import com.kh.miniservlet.vo.ItemVO;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -21,9 +22,8 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-public class ItemServlet extends HttpServlet {
-
-    @PostMapping("/ItemServlet")
+public class ItemDetailServlet extends HttpServlet {
+    @PostMapping("/ItemDetailServlet")
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         // 한글 깨짐 방지를 위해서 설정
@@ -35,40 +35,36 @@ public class ItemServlet extends HttpServlet {
         JSONObject jsonObj = Common.getJsonObj(sb);
 
         String reqCmd = (String)jsonObj.get("cmd");
-        String reqBrand = (String)jsonObj.get("brand");
-        String reqSort = (String)jsonObj.get("sort");
-        String reqCode = (String)jsonObj.get("code");
+        String reqCode = (String)jsonObj.get("proCode");
 
-        System.out.println("검색 조건 : " + reqSort);
         System.out.println("명령어 : " + reqCmd);
-        System.out.println("브랜드 : " + reqBrand);
-        System.out.println("브랜드 : " + reqCode);
+        System.out.println("상품코드 : " + reqCode);
 
         PrintWriter out = response.getWriter();
-        if(!reqCmd.equals("ItemInfo")) { // ItemInfo와 값이 다르면 NOT OK
+        if(!reqCmd.equals("ItemDetailInfo")) {
             JSONObject resJson = new JSONObject();
             resJson.put("result", "NOK");
             out.print(resJson);
             return;
         }
-        ItemDAO dao = new ItemDAO();
-        List<ItemVO> list = dao.itemSelect(reqCode, reqBrand, reqSort);
+        ItemDetailDAO dao = new ItemDetailDAO();
+        List<ItemVO> list = dao.itemDetailSelect(reqCode);
 
         JSONArray itemArray = new JSONArray();
         for (ItemVO e : list) {
-            JSONObject itemInfo = new JSONObject();
-            itemInfo.put("PRO_CODE", e.getProCode());
-            itemInfo.put("BRAND", e.getBrand());
-            itemInfo.put("PRO_NAME", e.getProName());
+            JSONObject itemDetailInfo = new JSONObject();
+            itemDetailInfo.put("PRO_CODE", e.getProCode());
+            itemDetailInfo.put("BRAND", e.getBrand());
+            itemDetailInfo.put("PRO_NAME", e.getProName());
 
             NumberFormat numberFormat = NumberFormat.getInstance();
             String numToStr = numberFormat.format(e.getPrice());
-            itemInfo.put("PRICE", numToStr);
+            itemDetailInfo.put("PRICE", numToStr);
 
             DateFormat dateFormat = new SimpleDateFormat("YY/MM/dd");
             String dateToStr = dateFormat.format(e.getLaunDate());
-            itemInfo.put("LAUN_DATE", dateToStr);
-            itemArray.add(itemInfo);
+            itemDetailInfo.put("LAUN_DATE", dateToStr);
+            itemArray.add(itemDetailInfo);
         }
         out.print(itemArray);
     }
