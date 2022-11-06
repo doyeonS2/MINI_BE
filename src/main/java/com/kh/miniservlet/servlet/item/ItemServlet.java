@@ -35,16 +35,14 @@ public class ItemServlet extends HttpServlet {
         JSONObject jsonObj = Common.getJsonObj(sb);
 
         String reqCmd = (String)jsonObj.get("cmd");
+        String reqCode = (String)jsonObj.get("code");
         String reqBrand = (String)jsonObj.get("brand");
         String reqSort = (String)jsonObj.get("sort");
-        String reqCode = (String)jsonObj.get("code");
-
 
         System.out.println("명령어 : " + reqCmd);
         System.out.println("상품코드 : " + reqCode);
         System.out.println("브랜드 : " + reqBrand);
         System.out.println("검색 조건 : " + reqSort);
-
 
         PrintWriter out = response.getWriter();
         if(!reqCmd.equals("ItemInfo")) { // ItemInfo와 값이 다르면 NOT OK
