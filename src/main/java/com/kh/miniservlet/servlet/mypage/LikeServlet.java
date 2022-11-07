@@ -43,7 +43,7 @@ public class LikeServlet extends HttpServlet {
             JSONObject likeInfo = new JSONObject();
             likeInfo.put("id", e.getId());
             likeInfo.put("proCode", e.getProCode());
-            likeInfo.put("likeCnt", e.getLike_cnt());
+            likeInfo.put("Like_cnt", e.getLike_cnt());
 
             likeArray.add(likeInfo);
         }
