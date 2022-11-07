@@ -28,6 +28,8 @@ public class BoardDAO {
             stmt = conn.createStatement();
             String sql = null; // sql문을 생성하고 들어오는 인자값 (reqId)에 따라
             if(reqDocNum.equals("ALL")) sql = "SELECT * FROM BOARD";
+            else if(reqDocNum.equals("자유게시판")) sql = "SELECT * FROM BOARD WHERE CATEGORY = 0" ;
+            else if (reqDocNum.equals("후기게시판")) sql = "SELECT * FROM BOARD WHERE CATEGORY = 1" ;
             else sql = "SELECT * FROM BOARD WHERE DOC_NUM = " + reqDocNum;
             rs = stmt.executeQuery(sql);
 
@@ -60,21 +62,54 @@ public class BoardDAO {
         return list;
     }
 
+    // 현재 가장 큰 글 고유넘버 가져오기
+    public Integer biggestBoardNum() {
+        System.out.println("biggestBoardNum 실행");
+
+
+        Integer docNum = null;
+        try {
+            conn = Common.getConnection();
+            stmt = conn.createStatement();
+
+            // 내가 보낼 sql문
+            String sql = "SELECT DOC_NUM  FROM (SELECT * FROM BOARD ORDER BY DOC_NUM DESC) WHERE ROWNUM = 1";
+            rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                docNum = rs.getInt("DOC_NUM");
+            }
+
+            Common.close(rs);
+            Common.close(stmt);
+            Common.close(conn);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return docNum;
+    }
+
 
 // 글쓰기 등록 기능
 // 글쓰기 성공시 1리턴, 실패시 0리
 
-    public boolean boardRegister(String docNum, String category, String title, String content, String id) {
+    public boolean boardRegister( String category, String title, String content, String id) {
         int result = 0;
         String sql = "INSERT INTO BOARD VALUES(?, ?, ?, ?, ?,SYSDATE)";
         try {
+
+
+            // 현재의 가장 큰 boardNum을 가져온다
+            BoardDAO dao = new BoardDAO();
+            Integer nowBiggestBoardNum = dao.biggestBoardNum();
             // String 으로 받아온 값을 Int형으로 변경해준다
-            int newDocNum = Integer.parseInt(docNum);
             int newCategory = Integer.parseInt(category);
 
             conn = Common.getConnection();
             pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, newDocNum);
+            pstmt.setInt(1, nowBiggestBoardNum + 1);
             pstmt.setInt(2, newCategory);
             pstmt.setString(3, title);
             pstmt.setString(4, content);
@@ -93,13 +128,40 @@ public class BoardDAO {
         else return false;
     }
 
+    // 작성자가 누군지 확인 (boardNum 입력 -> id 출력)
+    public String whoWriteBoard(String docNum) {
+       String id = null;
+        try {
+            conn = Common.getConnection();
+            stmt = conn.createStatement();
+
+            // 내가 보낼 sql문
+            String sql = "SELECT ID FROM BOARD WHERE DOC_NUM = " +docNum;
+            rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                id = rs.getString("ID");
+            }
+
+            Common.close(rs);
+            Common.close(stmt);
+            Common.close(conn);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return id;
+    }
 
 
     // 글 삭제
 // 삭제 성공시 1, 실패시 0 반환
     public boolean boardDelete(Integer docNum) {
         int result = 0;
-        String sql = "DELETE FROM BOARD WHERE ID = ? ";
+        String sql = "DELETE FROM BOARD WHERE DOC_NUM = ? ";
+
+
         try {
             conn = Common.getConnection();
             pstmt = conn.prepareStatement(sql);

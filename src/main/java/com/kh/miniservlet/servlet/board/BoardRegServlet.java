@@ -32,7 +32,6 @@ public class BoardRegServlet extends HttpServlet {
 
         // 필요한 모든 값을 넣어준다
         String reqCmd = (String) jsonObj.get("cmd");
-        String getBoardNum = (String) jsonObj.get("boardNum");
         String getCategory = (String)jsonObj.get("category");
         String getTitle = (String)jsonObj.get("title");
         String getContent = (String)jsonObj.get("content");
@@ -40,10 +39,9 @@ public class BoardRegServlet extends HttpServlet {
 
         // println으로 잘 들어왔는지 확인한다
         System.out.println("cmd : " + reqCmd);
-        System.out.println("BoardNum : " + getBoardNum);
 
         // 잘못 받아왔을 경우
-        if(!reqCmd.equals("BoardReg")) {
+        if(!reqCmd.equals("boardReg")) {
             PrintWriter out = response.getWriter();
             JSONObject resJson = new JSONObject();
             resJson.put("result", "NOK wrong cmd");
@@ -52,7 +50,8 @@ public class BoardRegServlet extends HttpServlet {
         }
 
         BoardDAO dao = new BoardDAO();
-        boolean rstComplete = dao.boardRegister( getBoardNum, getCategory, getTitle, getContent, getId);
+
+        boolean rstComplete = dao.boardRegister( getCategory, getTitle, getContent, getId);
 
         PrintWriter out = response.getWriter();
         JSONObject resJson = new JSONObject();

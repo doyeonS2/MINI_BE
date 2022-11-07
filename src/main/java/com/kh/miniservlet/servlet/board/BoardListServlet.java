@@ -66,7 +66,7 @@ public class BoardListServlet extends HttpServlet {
             boardInfo.put("title", e.getTitle());
             boardInfo.put("boardContent", e.getBoardContent());
             boardInfo.put("id", e.getId());
-            DateFormat dateFormat = new SimpleDateFormat("YYYY/dd/MM HH:mm:ss");
+            DateFormat dateFormat = new SimpleDateFormat("YYYY/MM/dd HH:mm:ss");
             String dateToStr = dateFormat.format(e.getBoardDate());
             boardInfo.put("boardDate", dateToStr);
             boardArray.add(boardInfo);
