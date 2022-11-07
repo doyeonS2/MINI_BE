@@ -45,7 +45,7 @@ public class MypostServlet extends HttpServlet {
             writeInfo.put("CATEGORY", e.getCategory());
             writeInfo.put("TITLE", e.getTitle());
             writeInfo.put("CONTENT", e.getBoardContent());
-            writeInfo.put("id", e.getId());
+            writeInfo.put("ID", e.getId());
 
             mypostArray.add(writeInfo);
         }
