@@ -29,38 +29,40 @@ public class EditMemServlet extends HttpServlet {
         StringBuffer sb = Common.reqStringBuff(request); // 요청 메시지 받기
         JSONObject jsonObj = Common.getJsonObj(sb); // 요청 받은 메시지 JSON 파싱
 
+        String reqCmd = (String)jsonObj.get("cmd");
         String getId = (String)jsonObj.get("id");
-        System.out.println("받은 아이디 : " + getId);
-//        String getPwd = (String)jsonObj.get("pwd");
-//        String getName = (String)jsonObj.get("name");
-//        String getEmail = (String)jsonObj.get("email");
-//        String getPhone = (String)jsonObj.get("phone");
-//        String getAddr = (String)jsonObj.get("addr");
+        String getPwd = (String)jsonObj.get("pwd");
+        String getName = (String)jsonObj.get("name");
+        String getEmail = (String)jsonObj.get("email");
+        String getPhone = (String)jsonObj.get("phone");
+        String getAddr = (String)jsonObj.get("addr");
 
 
         //int resState = dao.(getId, getPwd);
 
         PrintWriter out = response.getWriter();
-        EditMemberDAO dao = new EditMemberDAO();
-
-        // 현재 하나의 멤버 객체는 list에 있음
-        List<MemberVO> list = dao.MemInfo(getId);
-
-        JSONArray memberArray = new JSONArray();
-        for (MemberVO e : list){
-            JSONObject memberInfo = new JSONObject();
-            memberInfo.put("id", e.getId());
-            memberInfo.put("pwd", e.getPwd());
-            memberInfo.put("memName", e.getMemName());
-            memberInfo.put("email", e.getEmail());
-            memberInfo.put("phone", e.getPhone());
-            memberInfo.put("addr", e.getAddr());
-
-            memberArray.add(memberInfo);
+        if(!reqCmd.equals("EditMem")) {
+            JSONObject resJson = new JSONObject();
+            resJson.put("result", "NOK wrong CMD");
+            out.print(resJson);
+            return;
         }
 
-        System.out.println(memberArray);
 
-        out.print(memberArray);
+        EditMemberDAO dao = new EditMemberDAO();
+
+        System.out.println((getId + getPwd + getName + getEmail + getPhone + getAddr));
+
+        // 현재 하나의 멤버 객체는 list에 있음
+        // List<MemberVO> list = dao.MemInfo(getId);
+        boolean rstComplete = dao.editInfo(getId, getPwd, getName, getEmail,getPhone,getAddr);
+
+
+        JSONObject resJson = new JSONObject();
+        if(rstComplete) resJson.put("result", "OK");
+        else resJson.put("result", "NOK fail to Edit");
+        out.print(resJson);
+
+
     }
 }

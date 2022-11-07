@@ -65,18 +65,12 @@ public class EditMemberDAO {
     }
 
     //회원 정보 수정
-    public void editInfo(MemberVO merberVO) {
-        String pwd = merberVO.getPwd();
-        String name = merberVO.getMemName();
-        String email = merberVO.getEmail();
-        String phone = merberVO.getPhone();
-        String addr = merberVO.getAddr();
-
-
+    public boolean editInfo(String id, String pwd, String name, String email, String phone, String addr) {
+        int result = 0;
         try {
 
             conn = Common.getConnection();
-            String sql = "UPDATE MEM_TB SET PWD = ?, NAME = ?, EMAIL = ?, PHONE = ?, ADDR = ? WHERE ID = ?";
+            String sql = "UPDATE MEM_TB SET PASSWORD = ?, NAME = ?, EMAIL = ?, PHONE = ?, ADDR = ? WHERE ID = ?";
 
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, pwd);
@@ -84,14 +78,19 @@ public class EditMemberDAO {
             pstmt.setString(3, email);
             pstmt.setString(4, phone);
             pstmt.setString(5, addr);
-            pstmt.executeUpdate(); // 페이지에 뿌릴때는 stmt.executeQuery(결과값이 있고 단순히 호출할 때)
+            pstmt.setString(6, id);
+            result = pstmt.executeUpdate(); // 페이지에 뿌릴때는 stmt.executeQuery(결과값이 있고 단순히 호출할 때)
 
-            pstmt.close();
-            conn.close();
 
         } catch (Exception e) {
             System.out.println("회원정보 수정 중 예외 발생");
             e.printStackTrace(); //에러가 맨 위로 올라가게 해줌(에러찾기 쉽게해주는)
         }
+        Common.close(pstmt);
+        Common.close(conn);
+
+        if (result == 1) return true;
+        else return false;
+
     }
 }
