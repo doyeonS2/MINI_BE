@@ -12,8 +12,8 @@ public class ItemDAO {
     private ResultSet rs = null;
     private PreparedStatement pstmt = null;
 
-    // 전체브랜드 or 선택브랜드
-    public List<ItemVO> itemSelect(String reqCmd, String reqCode, String reqBrand, String reqSort) {
+    // 브랜드 선택 + 정렬 조건
+    public List<ItemVO> itemSelect(String reqBrand, String reqSort) {
         List<ItemVO> list = new ArrayList<>();
         try {
             conn = Common.getConnection();
@@ -64,11 +64,7 @@ public class ItemDAO {
                     sql = "SELECT * FROM PRO_TB where brand = \'VANS\' ORDER BY PRICE DESC";
                 } else sql = "SELECT * FROM PRO_TB where brand = \'VANS\' ORDER BY PRICE";
             }
-            else if(reqCmd.equals("ItemInfo")){
-                sql = "SELECT * FROM PRO_TB WHERE PRO_CODE = " + "'" + reqBrand + "'";
-            }
 
-            //pstmt = conn.prepareStatement(sql);
             rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
@@ -77,6 +73,7 @@ public class ItemDAO {
                 String proName = rs.getString("PRO_NAME");
                 Integer price = rs.getInt("PRICE");
                 Date launDate = rs.getDate("LAUN_DATE");
+                String imgPath = rs.getString("IMG");
 
                 ItemVO vo = new ItemVO();
                 vo.setProCode(proCode);
@@ -84,16 +81,71 @@ public class ItemDAO {
                 vo.setProName(proName);
                 vo.setPrice(price);
                 vo.setLaunDate(launDate);
+                vo.setImgPath(imgPath);
                 list.add(vo);
             }
             Common.close(rs);
-            //Common.close(pstmt);
             Common.close(stmt);
             Common.close(conn);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return list;
+    }
+
+
+    // 카테고리 필터 함수
+    // cmd : 정렬기준, 브랜드, 상품코드
+    public List<ItemVO> itemCmdSelect(String cmd) {
+
+        List<ItemVO> list = new ArrayList<>();
+        try {
+            conn = Common.getConnection();
+            stmt = conn.createStatement();
+            String sql = null; // sql문을 생성하고 들어오는 인자값 (reqId)에 따라
+            // || cmd.equals("LOW_PRICE") || cmd.equals("HIGH_PRICE")
+
+            if(cmd.equals("NEW_DATE")) sql = "SELECT * FROM PRO_TB ORDER BY LAUN_DATE DESC" ;
+            else if(cmd.equals("LOW_PRICE")) sql = "SELECT * FROM PRO_TB ORDER BY PRICE " ;
+            else if(cmd.equals("HIGH_PRICE")) sql = "SELECT * FROM PRO_TB ORDER BY PRICE DESC" ;
+
+            else if(cmd.equals("NEW BALANCE")) sql = "SELECT * FROM PRO_TB WHERE BRAND = \'NEW BALANCE\' " ;
+            else if(cmd.equals("NIKE")) sql = "SELECT * FROM PRO_TB WHERE BRAND = \'NIKE\'" ;
+            else if(cmd.equals("ADIDAS")) sql = "SELECT * FROM PRO_TB WHERE BRAND = \'ADIDAS\'" ;
+            else if(cmd.equals("CONVERSE")) sql = "SELECT * FROM PRO_TB WHERE BRAND = \'CONVERSE\'" ;
+            else if(cmd.equals("VANS")) sql = "SELECT * FROM PRO_TB WHERE BRAND = \'VANS\'" ;
+
+            else sql = "SELECT * FROM PRO_TB WHERE PRO_CODE = " +  "'" + cmd + "'";
+
+            rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                String proCode = rs.getString("PRO_CODE");
+                String brand = rs.getString("BRAND");
+                String proName = rs.getString("PRO_NAME");
+                Integer price = rs.getInt("PRICE");
+                Date launDate = rs.getDate("LAUN_DATE");
+                String imgPath = rs.getString("IMG");
+
+                ItemVO vo = new ItemVO();
+
+                vo.setProCode(proCode);
+                vo.setBrand(brand);
+                vo.setProName(proName);
+                vo.setPrice(price);
+                vo.setLaunDate(launDate);
+                vo.setImgPath(imgPath);
+                list.add(vo);
+            }
+            Common.close(rs);
+            Common.close(stmt);
+            Common.close(conn);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return list;
     }
 }

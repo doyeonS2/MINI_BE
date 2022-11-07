@@ -35,36 +35,40 @@ public class ItemDetailServlet extends HttpServlet {
         JSONObject jsonObj = Common.getJsonObj(sb);
 
         String reqCmd = (String)jsonObj.get("cmd");
-        String reqCode = (String)jsonObj.get("proCode");
-
-        System.out.println("명령어 : " + reqCmd);
-        System.out.println("상품코드 : " + reqCode);
+        String reqBrand = (String)jsonObj.get("brand");
+        String reqSort = (String)jsonObj.get("sort");
 
         PrintWriter out = response.getWriter();
-        if(!reqCmd.equals("ItemDetailInfo")) {
+
+        if(!reqCmd.equals("ItemInfo")) { // ItemInfo와 값이 다르면 NOT OK
             JSONObject resJson = new JSONObject();
             resJson.put("result", "NOK");
             out.print(resJson);
             return;
         }
-        ItemDetailDAO dao = new ItemDetailDAO();
-        List<ItemVO> list = dao.itemDetailSelect(reqCode);
+
+        ItemDAO dao = new ItemDAO();
+
+        List<ItemVO> list = dao.itemSelect(reqBrand, reqSort);
 
         JSONArray itemArray = new JSONArray();
+
         for (ItemVO e : list) {
-            JSONObject itemDetailInfo = new JSONObject();
-            itemDetailInfo.put("PRO_CODE", e.getProCode());
-            itemDetailInfo.put("BRAND", e.getBrand());
-            itemDetailInfo.put("PRO_NAME", e.getProName());
+            JSONObject itemInfo = new JSONObject();
+            itemInfo.put("PRO_CODE", e.getProCode());
+            itemInfo.put("BRAND", e.getBrand());
+            itemInfo.put("PRO_NAME", e.getProName());
+            itemInfo.put("IMG", e.getImgPath());
 
             NumberFormat numberFormat = NumberFormat.getInstance();
             String numToStr = numberFormat.format(e.getPrice());
-            itemDetailInfo.put("PRICE", numToStr);
+            itemInfo.put("PRICE", numToStr);
 
             DateFormat dateFormat = new SimpleDateFormat("YY/MM/dd");
             String dateToStr = dateFormat.format(e.getLaunDate());
-            itemDetailInfo.put("LAUN_DATE", dateToStr);
-            itemArray.add(itemDetailInfo);
+            itemInfo.put("LAUN_DATE", dateToStr);
+
+            itemArray.add(itemInfo);
         }
         out.print(itemArray);
     }

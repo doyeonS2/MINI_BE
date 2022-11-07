@@ -14,5 +14,5 @@ public class ItemVO {
     private Date launDate; // 상품 발매일, 변환해줘야 함
     private Integer price; // 상품 가격, 변환해줘야 함
     private Integer size; // 상품 사이즈, 변환해줘야 함
-    //private String imgPath; // 이미지경로
+    private String imgPath; // 이미지경로
 }

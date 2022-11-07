@@ -35,31 +35,31 @@ public class ItemServlet extends HttpServlet {
         JSONObject jsonObj = Common.getJsonObj(sb);
 
         String reqCmd = (String)jsonObj.get("cmd");
-        String reqCode = (String)jsonObj.get("code");
-        String reqBrand = (String)jsonObj.get("brand");
-        String reqSort = (String)jsonObj.get("sort");
+        String reqTmp = (String)jsonObj.get("tmp");
 
-        System.out.println("명령어 : " + reqCmd);
-        System.out.println("상품코드 : " + reqCode);
-        System.out.println("브랜드 : " + reqBrand);
-        System.out.println("검색 조건 : " + reqSort);
+        System.out.println("명령어 : " + reqTmp);
 
         PrintWriter out = response.getWriter();
+
         if(!reqCmd.equals("ItemInfo")) { // ItemInfo와 값이 다르면 NOT OK
             JSONObject resJson = new JSONObject();
             resJson.put("result", "NOK");
             out.print(resJson);
             return;
         }
+
         ItemDAO dao = new ItemDAO();
-        List<ItemVO> list = dao.itemSelect(reqCmd, reqCode, reqBrand, reqSort);
+
+        List<ItemVO> list = dao.itemCmdSelect(reqTmp);
 
         JSONArray itemArray = new JSONArray();
+
         for (ItemVO e : list) {
             JSONObject itemInfo = new JSONObject();
             itemInfo.put("PRO_CODE", e.getProCode());
             itemInfo.put("BRAND", e.getBrand());
             itemInfo.put("PRO_NAME", e.getProName());
+            itemInfo.put("IMG", e.getImgPath());
 
             NumberFormat numberFormat = NumberFormat.getInstance();
             String numToStr = numberFormat.format(e.getPrice());
@@ -68,6 +68,7 @@ public class ItemServlet extends HttpServlet {
             DateFormat dateFormat = new SimpleDateFormat("YY/MM/dd");
             String dateToStr = dateFormat.format(e.getLaunDate());
             itemInfo.put("LAUN_DATE", dateToStr);
+
             itemArray.add(itemInfo);
         }
         out.print(itemArray);
