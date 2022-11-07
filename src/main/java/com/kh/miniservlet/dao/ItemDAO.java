@@ -13,15 +13,15 @@ public class ItemDAO {
     private PreparedStatement pstmt = null;
 
     // 전체브랜드 or 선택브랜드
-    public List<ItemVO> itemSelect(String reqCode, String reqBrand, String reqSort) {
+    public List<ItemVO> itemSelect(String reqCmd, String reqCode, String reqBrand, String reqSort) {
         List<ItemVO> list = new ArrayList<>();
         try {
             conn = Common.getConnection();
             stmt = conn.createStatement();
             String sql = null;
 
-			// 브랜드 선택 + 정렬 쿼리
-			if (reqBrand.equals("ALL")) {
+            // 브랜드 선택 + 정렬 쿼리
+            if (reqBrand.equals("ALL")) {
                 sql = "SELECT * FROM PRO_TB";
                 if (reqSort.equals("NEW_DATE")) {
                     sql = "SELECT * FROM PRO_TB ORDER BY LAUN_DATE DESC";
@@ -29,7 +29,7 @@ public class ItemDAO {
                     sql = "SELECT * FROM PRO_TB ORDER BY PRICE DESC";
                 } else sql = "SELECT * FROM PRO_TB ORDER BY PRICE ASC";
             }
-			else if(reqBrand.equals("NIKE")) {
+            else if(reqBrand.equals("NIKE")) {
                 if (reqSort.equals("NEW_DATE")) {
                     sql = "SELECT * FROM PRO_TB where brand = \'NIKE\' ORDER BY LAUN_DATE DESC";
                 } else if (reqSort.equals("HIGH_PRICE")) {
@@ -64,8 +64,8 @@ public class ItemDAO {
                     sql = "SELECT * FROM PRO_TB where brand = \'VANS\' ORDER BY PRICE DESC";
                 } else sql = "SELECT * FROM PRO_TB where brand = \'VANS\' ORDER BY PRICE";
             }
-            else if(reqBrand.equals(reqCode)){
-                sql = "SELECT * FROM PRO_TB WHERE PRO_CODE = " + "'" + reqCode + "'";
+            else if(reqCmd.equals("ItemInfo")){
+                sql = "SELECT * FROM PRO_TB WHERE PRO_CODE = " + "'" + reqBrand + "'";
             }
 
             //pstmt = conn.prepareStatement(sql);
