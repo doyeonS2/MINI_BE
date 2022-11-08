@@ -8,13 +8,16 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="BE-IntelliJ" />
-        <module name="BE(intelliJ)" />
-        <module name="BE" />
         <module name="BE(InterlliJ)" />
         <module name="MINI_BE_IJ" />
+        <module name="BE(intelliJ)" />
+        <module name="BE" />
         <module name="Project_Backend_스니커조_인텔리제이" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="MINI_BE_IJ" target="11" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

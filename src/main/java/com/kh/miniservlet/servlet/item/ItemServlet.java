@@ -59,7 +59,10 @@ public class ItemServlet extends HttpServlet {
             itemInfo.put("PRO_CODE", e.getProCode());
             itemInfo.put("BRAND", e.getBrand());
             itemInfo.put("PRO_NAME", e.getProName());
-            itemInfo.put("IMG", e.getImgPath());
+            itemInfo.put("PRO_KORNAME", e.getProKorName());
+            itemInfo.put("IMG1", e.getImg1Path());
+            itemInfo.put("IMG2", e.getImg2Path());
+            itemInfo.put("IMG3", e.getImg3Path());
 
             NumberFormat numberFormat = NumberFormat.getInstance();
             String numToStr = numberFormat.format(e.getPrice());

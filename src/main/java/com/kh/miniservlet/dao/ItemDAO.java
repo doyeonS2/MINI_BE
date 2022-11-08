@@ -71,17 +71,23 @@ public class ItemDAO {
                 String proCode = rs.getString("PRO_CODE");
                 String brand = rs.getString("BRAND");
                 String proName = rs.getString("PRO_NAME");
+                String proKorName = rs.getString("PRO_KORNAME");
                 Integer price = rs.getInt("PRICE");
                 Date launDate = rs.getDate("LAUN_DATE");
-                String imgPath = rs.getString("IMG");
+                String img1Path = rs.getString("IMG1");
+                String img2Path = rs.getString("IMG2");
+                String img3Path = rs.getString("IMG3");
 
                 ItemVO vo = new ItemVO();
                 vo.setProCode(proCode);
                 vo.setBrand(brand);
                 vo.setProName(proName);
+                vo.setProKorName(proKorName);
                 vo.setPrice(price);
                 vo.setLaunDate(launDate);
-                vo.setImgPath(imgPath);
+                vo.setImg1Path(img1Path);
+                vo.setImg2Path(img2Path);
+                vo.setImg3Path(img3Path);
                 list.add(vo);
             }
             Common.close(rs);
@@ -124,18 +130,24 @@ public class ItemDAO {
                 String proCode = rs.getString("PRO_CODE");
                 String brand = rs.getString("BRAND");
                 String proName = rs.getString("PRO_NAME");
+                String proKorName = rs.getString("PRO_KORNAME");
                 Integer price = rs.getInt("PRICE");
                 Date launDate = rs.getDate("LAUN_DATE");
-                String imgPath = rs.getString("IMG");
+                String img1Path = rs.getString("IMG1");
+                String img2Path = rs.getString("IMG2");
+                String img3Path = rs.getString("IMG3");
 
                 ItemVO vo = new ItemVO();
 
                 vo.setProCode(proCode);
                 vo.setBrand(brand);
                 vo.setProName(proName);
+                vo.setProKorName(proKorName);
                 vo.setPrice(price);
                 vo.setLaunDate(launDate);
-                vo.setImgPath(imgPath);
+                vo.setImg1Path(img1Path);
+                vo.setImg2Path(img2Path);
+                vo.setImg3Path(img3Path);
                 list.add(vo);
             }
             Common.close(rs);
