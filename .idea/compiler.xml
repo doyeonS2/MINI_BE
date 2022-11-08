@@ -8,6 +8,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="BE-IntelliJ" />
+<<<<<<< HEAD
+=======
+        <module name="BE(intelliJ)" />
+        <module name="BE" />
+        <module name="mini-servlet" />
+>>>>>>> 93eacbb81167dff26ddda111a6f1ad969f2f9ae6
         <module name="BE(InterlliJ)" />
         <module name="MINI_BE_IJ" />
         <module name="BE(intelliJ)" />
@@ -16,7 +22,11 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+<<<<<<< HEAD
       <module name="MINI_BE_IJ" target="11" />
+=======
+      <module name="mini-servlet" target="11" />
+>>>>>>> 93eacbb81167dff26ddda111a6f1ad969f2f9ae6
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
