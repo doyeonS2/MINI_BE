@@ -18,4 +18,5 @@ public class ItemVO {
     private String img1Path; // 이미지경로(img1 : 메인이미지)
     private String img2Path; // 이미지경로(img2 : 서브이미지1)
     private String img3Path; // 이미지경로(img3 : 서브이미지2)
+    private Integer likeCnt; // 좋아요 수
 }
