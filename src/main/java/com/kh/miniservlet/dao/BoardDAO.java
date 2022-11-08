@@ -27,9 +27,9 @@ public class BoardDAO {
             conn = Common.getConnection();
             stmt = conn.createStatement();
             String sql = null; // sql문을 생성하고 들어오는 인자값 (reqId)에 따라
-            if(reqDocNum.equals("ALL")) sql = "SELECT * FROM BOARD";
-            else if(reqDocNum.equals("자유게시판")) sql = "SELECT * FROM BOARD WHERE CATEGORY = 0" ;
-            else if (reqDocNum.equals("후기게시판")) sql = "SELECT * FROM BOARD WHERE CATEGORY = 1" ;
+            if(reqDocNum.equals("ALL")) sql = "SELECT * FROM BOARD ORDER BY DOC_NUM DESC";
+            else if(reqDocNum.equals("자유게시판")) sql = "SELECT * FROM BOARD WHERE CATEGORY = 0 ORDER BY DOC_NUM DESC" ;
+            else if (reqDocNum.equals("후기게시판")) sql = "SELECT * FROM BOARD WHERE CATEGORY = 1 ORDER BY DOC_NUM DESC" ;
             else sql = "SELECT * FROM BOARD WHERE DOC_NUM = " + reqDocNum;
             rs = stmt.executeQuery(sql);
 
@@ -130,7 +130,7 @@ public class BoardDAO {
 
     // 작성자가 누군지 확인 (boardNum 입력 -> id 출력)
     public String whoWriteBoard(String docNum) {
-       String id = null;
+        String id = null;
         try {
             conn = Common.getConnection();
             stmt = conn.createStatement();
