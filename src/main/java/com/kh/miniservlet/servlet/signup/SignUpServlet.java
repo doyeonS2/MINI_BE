@@ -32,7 +32,6 @@ public class SignUpServlet extends HttpServlet {
 
         System.out.println("주소 : " + getAddr);
 
-
         SignUpDAO dao = new SignUpDAO();
         boolean rstComplete = dao.memberRegister(getId, getPwd, getMemName, getEmail, getPhone, getAddr); // memberRegister : DAO라는 객체에 있는 메소드(MemberDAO 파일에 메소드 만들어야 함)
 
@@ -41,7 +40,6 @@ public class SignUpServlet extends HttpServlet {
         if(rstComplete) resJson.put("result", "OK");
         else resJson.put("result", "NOK");
         out.print(resJson);
-
 
     }
 }
