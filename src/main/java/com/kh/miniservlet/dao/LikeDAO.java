@@ -46,4 +46,18 @@ public class LikeDAO {
         }
         return list;
     }
+
+    public void likeCnt(String procode){
+        //String sql = "UPDATE PRO_TB SET LIKE_CNT= LIKE_CNT+1 WHERE PRO_CODE = " + "'" + procode + "'";
+        String sql = "SELECT COUNT(*) FROM LIKE_TB WHERE PRO_CODE = 'MR993GL'";
+        try{
+            conn = Common.getConnection();
+            stmt = conn.createStatement();
+            stmt.executeQuery(sql);
+            Common.close(stmt);
+            Common.close(conn);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

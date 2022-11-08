@@ -63,6 +63,7 @@ public class ItemServlet extends HttpServlet {
             itemInfo.put("IMG1", e.getImg1Path());
             itemInfo.put("IMG2", e.getImg2Path());
             itemInfo.put("IMG3", e.getImg3Path());
+            itemInfo.put("LIKE_CNT",e.getLikeCnt());
 
             NumberFormat numberFormat = NumberFormat.getInstance();
             String numToStr = numberFormat.format(e.getPrice());
