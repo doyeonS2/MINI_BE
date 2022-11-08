@@ -10,11 +10,15 @@
         <module name="BE-IntelliJ" />
         <module name="BE(intelliJ)" />
         <module name="BE" />
+        <module name="mini-servlet" />
         <module name="BE(InterlliJ)" />
         <module name="MINI_BE_IJ" />
         <module name="Project_Backend_스니커조_인텔리제이" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="mini-servlet" target="11" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
