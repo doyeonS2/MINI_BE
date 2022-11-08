@@ -12,14 +12,15 @@
 //import javax.servlet.http.HttpServletResponse;
 //import java.io.IOException;
 //import java.io.PrintWriter;
+//import java.util.List;
 //
 //@RestController
 //@CrossOrigin(origins = "http://localhost:3000") // 3000번에 대한 cors 허용
 //
 //
-// s
+//
 //public class ResultServlet extends HttpServlet {
-//    @PostMapping("/LoginServlet") // 이클립스의 서블렛파일에서 쓰는 @WebServlet("/LoginServlet")와 같은 기능
+//    @PostMapping("/ResultServlet") // 이클립스의 서블렛파일에서 쓰는 @WebServlet("/LoginServlet")와 같은 기능
 //    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 //        request.setCharacterEncoding("utf-8"); // 한글 깨짐 방지를 위해서 설정
 //        StringBuffer sb = Common.reqStringBuff(request); // 요청 메시지 받기
@@ -28,7 +29,7 @@
 //        String getResult = (String) jsonObj.get("result");
 //
 //        ResultDAO dao = new ResultDAO();
-//        int resState = dao.resultCheck(getResult);
+//        List resState = dao.researchCheck(getResult);
 //
 //        PrintWriter out = response.getWriter();
 //        JSONObject resJson = new JSONObject();
