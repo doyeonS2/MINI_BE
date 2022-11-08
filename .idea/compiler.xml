@@ -3,41 +3,6 @@
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
-      <profile name="Maven default annotation processors profile" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <module name="BE-IntelliJ" />
-<<<<<<< HEAD
-=======
-        <module name="BE(intelliJ)" />
-        <module name="BE" />
-        <module name="mini-servlet" />
->>>>>>> 93eacbb81167dff26ddda111a6f1ad969f2f9ae6
-        <module name="BE(InterlliJ)" />
-        <module name="MINI_BE_IJ" />
-        <module name="BE(intelliJ)" />
-        <module name="BE" />
-        <module name="Project_Backend_스니커조_인텔리제이" />
-      </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-<<<<<<< HEAD
-      <module name="MINI_BE_IJ" target="11" />
-=======
-      <module name="mini-servlet" target="11" />
->>>>>>> 93eacbb81167dff26ddda111a6f1ad969f2f9ae6
-    </bytecodeTargetLevel>
-  </component>
-  <component name="JavacSettings">
-    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="BE" options="-parameters" />
-      <module name="BE(InterlliJ)" options="-parameters" />
-      <module name="BE(intelliJ)" options="-parameters" />
-      <module name="BE-IntelliJ" options="-parameters" />
-      <module name="MINI_BE_IJ" options="-parameters" />
-      <module name="Project_Backend_스니커조_인텔리제이" options="-parameters" />
-      <module name="mini-servlet" options="-parameters" />
-    </option>
   </component>
 </project>
