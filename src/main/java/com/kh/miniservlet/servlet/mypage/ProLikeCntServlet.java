@@ -22,37 +22,44 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
-public class LikeServlet extends HttpServlet {
-    @PostMapping("/LikeServlet")
+public class ProLikeCntServlet extends HttpServlet {
+    @PostMapping("/ProLikeCntServlet")
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        // 상품에 대한 관심상품 갯수
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
 
         StringBuffer sb = Common.reqStringBuff(request);
         JSONObject jsonObj = Common.getJsonObj(sb);
 
-        // String getCmd = (String) jsonObj.get("cmd");
-        String getId = (String) jsonObj.get("id");
-        System.out.println("받은 아이디 : " + getId);
-        //System.out.println("받은 cmd : " + getCmd);
+        String getProCode = (String) jsonObj.get("proCode");
+        System.out.println("받은 상품 : " + getProCode);
 
         PrintWriter out = response.getWriter();
+
+
+        //String result = dao.proLikeCnt(getProCode);
+        //LikeVO vo = new LikeVO();
+        JSONObject likeObject = new JSONObject();
+        //likeObject.put("COUNT(*)", result);
+
         LikeDAO dao = new LikeDAO();
+        int result = dao.proLikeCnt(getProCode);
 
-        List<LikeVO> list = dao.LikeInfo(getId);
+//        JSONArray proLikeArray = new JSONArray();
+//        for (LikeVO e : list) {
+//            JSONObject LikeInfo = new JSONObject();
+//            LikeInfo.put("proCode", e.getProCode());
+//
+//            proLikeArray.add(LikeInfo);
+//        }
+        System.out.println(result);
+        likeObject.put("totalCnt",result);
 
 
-        JSONArray LikeArray = new JSONArray();
-        for (LikeVO e : list) {
-            // 자바 객체 생성
-            JSONObject LikeInfo = new JSONObject();
-            LikeInfo.put("proCode", e.getProCode());
 
-            LikeArray.add(LikeInfo);
-        }
-        System.out.println(LikeArray);
-        out.print(LikeArray);
+        out.print(likeObject);
 
         //String like_Cnt = (String) jsonObj.get("COUNT(*)");
         //System.out.println(like_Cnt);

@@ -15,7 +15,6 @@ public class LikeDAO {
     private PreparedStatement pstmt = null;
 
     public List<LikeVO> LikeInfo(String id) {
-
         List<LikeVO> list = new ArrayList<>();
         try {
             conn = Common.getConnection();
@@ -26,15 +25,15 @@ public class LikeDAO {
             while(rs.next()) {
 
                 String id1 = rs.getString("ID");
-                String procode = rs.getString("PRO_CODE");
-                Integer likecnt = rs.getInt("LIKECNT");
+                String proCode = rs.getString("PRO_CODE");
+                //Integer likeCnt = rs.getInt("LIKE_CNT");
 
                 LikeVO vo = new LikeVO();
 
 
                 vo.setId(id1);
-                vo.setProCode(procode);
-                vo.setLike_cnt(likecnt);
+                vo.setProCode(proCode);
+                //vo.setLike_cnt(likeCnt);
                 list.add(vo);
             }
             Common.close(rs);
@@ -47,17 +46,53 @@ public class LikeDAO {
         return list;
     }
 
-    public void likeCnt(String procode){
-        //String sql = "UPDATE PRO_TB SET LIKE_CNT= LIKE_CNT+1 WHERE PRO_CODE = " + "'" + procode + "'";
-        String sql = "SELECT COUNT(*) FROM LIKE_TB WHERE PRO_CODE = 'MR993GL'";
-        try{
+    public Integer proLikeCnt(String ProCode){
+
+//        List<LikeVO> list = new ArrayList<>();
+        Integer getCnt = null;
+        try {
             conn = Common.getConnection();
             stmt = conn.createStatement();
-            stmt.executeQuery(sql);
+            String sql = "SELECT COUNT (*) FROM LIKE_TB WHERE PRO_CODE = " + "'" + ProCode + "'";
+            rs = stmt.executeQuery(sql);
+
+            while(rs.next()) {
+
+                getCnt = rs.getInt("COUNT(*)");
+
+//                LikeVO vo = new LikeVO();
+//
+//                vo.(getCnt);
+
+//                list.add(vo);
+            }
+            Common.close(rs);
             Common.close(stmt);
             Common.close(conn);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
+        return getCnt;
+
+        //String sql = "UPDATE PRO_TB SET LIKE_CNT= LIKE_CNT+1 WHERE PRO_CODE = " + "'" + procode + "'";
+//        System.out.println("LikeDAO, proLikeCnt 실행");
+//        String likeCnt = null;
+//        try{
+//            conn = Common.getConnection();
+//            stmt = conn.createStatement();
+//
+//            String sql = "SELECT COUNT (*) FROM LIKE_TB WHERE PRO_CODE = " + "'" + ProCode + "'";
+//            rs=stmt.executeQuery(sql);
+//            likeCnt =rs.getString();
+//
+//
+//            System.out.println(likeCnt);
+//            Common.close(stmt);
+//            Common.close(conn);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//        return likeCnt;
     }
 }

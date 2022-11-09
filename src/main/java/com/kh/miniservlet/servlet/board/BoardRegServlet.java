@@ -39,7 +39,6 @@ public class BoardRegServlet extends HttpServlet {
 
         // println으로 잘 들어왔는지 확인한다
         System.out.println("cmd : " + reqCmd);
-
         // 잘못 받아왔을 경우
         if(!reqCmd.equals("boardReg")) {
             PrintWriter out = response.getWriter();

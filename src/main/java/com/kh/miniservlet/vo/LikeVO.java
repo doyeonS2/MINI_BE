@@ -8,5 +8,5 @@ import lombok.Setter;
 public class LikeVO {
     private String id;
     private String proCode;
-    private Integer Like_cnt;
+    //private Integer Like_cnt;
 }
