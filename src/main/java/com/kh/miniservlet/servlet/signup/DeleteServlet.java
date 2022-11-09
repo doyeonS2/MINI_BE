@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
-// 도연 - 회원탈퇴 작업중..
+// 도연 - 회원탈퇴 작업 완료
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -38,7 +38,5 @@ public class DeleteServlet extends HttpServlet {
         if(rstComplete) resJson.put("result", "OK");
         else resJson.put("result", "NOK");
         out.print(resJson);
-
-
     }
 }

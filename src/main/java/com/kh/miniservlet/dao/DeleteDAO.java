@@ -1,12 +1,11 @@
 package com.kh.miniservlet.dao;
 import com.kh.miniservlet.common.Common;
 import com.kh.miniservlet.vo.MemberVO;
-
 import java.sql.*;
 
-public class DeleteDAO {
+// 도연 - 회원탈퇴 작업 완료
 
-    // 도연 - 회원탈퇴 작업중..
+public class DeleteDAO {
     private Connection conn = null;
     private Statement stmt = null; // 표준 SQL문을 수행하기 위한 Statement 객체 얻기
     private ResultSet rs = null; // Statement의 수행 결과를 여러행으로 받음(다음에 읽을 게 없을때까지)
@@ -43,45 +42,5 @@ public class DeleteDAO {
             else return false;
 
         } else return false;
-
-
-
-
     }
 }
-
-
-
-
-//
-//        try {
-//            conn = Common.getConnection();
-//            pstmt = conn.prepareStatement(sqlGetPwd);
-//            rs = stmt.executeQuery();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-
-//        try {
-//            conn = Common.getConnection();
-//            pstmt = conn.prepareStatement(sql);
-//            pstmt.setString(1, id);
-//            pstmt.setString(2, pwd);
-//
-//            result = pstmt.executeUpdate();
-//            System.out.println("회원 탈퇴 DB 결과 확인 : " + result);
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        Common.close(pstmt);
-//        Common.close(conn);
-//
-//        if(result == 1) return true;
-//        else return false;
-//
-//
-//    }
-//
-//}
