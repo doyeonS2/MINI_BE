@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 // 도연 - 회원탈퇴 작업중..
 
@@ -22,8 +23,15 @@ public class DeleteServlet extends HttpServlet {
         StringBuffer sb = Common.reqStringBuff(request);
         JSONObject jsonObj = Common.getJsonObj(sb);
         String getId = (String)jsonObj.get("id");
+        String getPwd = (String)jsonObj.get("pwd");
+
         DeleteDAO dao = new DeleteDAO();
-        boolean rstComplete = dao.memberDelete(getId);
+        boolean rstComplete = false;
+        try {
+            rstComplete = dao.memberDelete(getId, getPwd);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         PrintWriter out = response.getWriter();
         JSONObject resJson = new JSONObject();
