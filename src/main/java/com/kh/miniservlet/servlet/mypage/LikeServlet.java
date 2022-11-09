@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -47,7 +48,20 @@ public class LikeServlet extends HttpServlet {
         for (LikeVO e : list) {
             // 자바 객체 생성
             JSONObject LikeInfo = new JSONObject();
+            LikeInfo.put("id", e.getId());
             LikeInfo.put("proCode", e.getProCode());
+            LikeInfo.put("brand", e.getBrand());
+            LikeInfo.put("proName", e.getProName());
+            LikeInfo.put("proKorName", e.getProKorName());
+            LikeInfo.put("img1Path", e.getImg1Path());
+
+            NumberFormat numberFormat = NumberFormat.getInstance();
+            String numToStr = numberFormat.format(e.getPrice());
+            LikeInfo.put("price", numToStr);
+
+            DateFormat dateFormat = new SimpleDateFormat("YY/MM/dd");
+            String dateToStr = dateFormat.format(e.getLaunDate());
+            LikeInfo.put("launDate", dateToStr);
 
             LikeArray.add(LikeInfo);
         }
