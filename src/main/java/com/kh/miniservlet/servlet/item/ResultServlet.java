@@ -45,7 +45,9 @@ public class ResultServlet extends HttpServlet {
             searchInfo.put("proCode", e.getProCode());
             searchInfo.put("brand", e.getBrand());
             searchInfo.put("proKorName", e.getProKorName());
+            searchInfo.put("proName", e.getProName());
             searchInfo.put("img1Path", e.getImg1Path());
+            searchInfo.put("price", e.getPrice());
 
             searchArray.add(searchInfo);
         }
