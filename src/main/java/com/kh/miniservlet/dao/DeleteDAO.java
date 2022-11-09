@@ -29,7 +29,7 @@ public class DeleteDAO {
 
         if(newPwd.equals(pwd)) {
             try {
-                System.out.println("패스워드가 일치 합니다");
+                System.out.println("패스워드가 일치합니다.");
                 conn = Common.getConnection();
                 pstmt = conn.prepareStatement(sqlDel);
                 result = pstmt.executeUpdate();

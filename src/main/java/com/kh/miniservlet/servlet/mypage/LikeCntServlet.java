@@ -18,7 +18,7 @@ public class LikeCntServlet extends HttpServlet {
 
     @PostMapping("/LikeCntServlet")
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-수
+
         // 상품을 눌렀을 때 cnt값 반영되도록
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
