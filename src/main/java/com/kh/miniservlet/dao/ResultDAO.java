@@ -61,7 +61,7 @@ public class ResultDAO {
         try {
             conn = Common.getConnection();
             stmt = conn.createStatement();
-            String sql = "SELECT * FROM PRO_TB WHERE PRO_KORNAME LIKE '%" + result + "%'" + "OR PRO_NAME LIKE '%" + result + "%'" + "OR BRAND LIKE '%" + result + "%'";
+            String sql = "SELECT * FROM PRO_TB WHERE PRO_KORNAME LIKE '%" + result + "%'OR UPPER(PRO_NAME) LIKE UPPER('%" + result + "%')OR UPPER(BRAND) LIKE UPPER('%" + result + "%')";
             rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
