@@ -38,6 +38,5 @@ public class SignUpServlet extends HttpServlet {
         if(rstComplete) resJson.put("result", "OK");
         else resJson.put("result", "NOK");
         out.print(resJson);
-
     }
 }
