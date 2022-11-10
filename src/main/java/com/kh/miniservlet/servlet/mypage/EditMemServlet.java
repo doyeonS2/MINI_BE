@@ -18,7 +18,7 @@ import java.io.PrintWriter;
 //import java.text.SimpleDateFormat;
 import java.util.List;
 
-import static com.kh.miniservlet.common.Common.FRONT_DOMAIN;
+import static com.kh.miniservlet.common.Common.*;
 
 @RestController
 @CrossOrigin(origins = FRONT_DOMAIN) // 3000번에 대한 cors 허용
