@@ -10,8 +10,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-
 public class Common {
+    public final static String FRONT_DOMAIN = "http://192.168.110.14:3000";
     final static String ORACLE_URL = "jdbc:oracle:thin:@localhost:1521:xe";
     final static String ORACLE_ID = "scott";
     final static String ORACLE_PW = "tiger";

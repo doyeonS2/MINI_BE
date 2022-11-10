@@ -18,8 +18,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import static com.kh.miniservlet.common.Common.FRONT_DOMAIN;
+
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = FRONT_DOMAIN)
 public class MypostServlet extends HttpServlet {
     @PostMapping("/MypostServlet") // 이클립스의 서블렛파일에서 쓰는 @WebServlet("/LoginServlet")와 같은 기능
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {

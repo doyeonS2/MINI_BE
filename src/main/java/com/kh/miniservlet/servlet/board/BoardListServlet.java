@@ -21,10 +21,11 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.kh.miniservlet.common.Common.FRONT_DOMAIN;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = FRONT_DOMAIN)
 public class BoardListServlet extends HttpServlet {
     @PostMapping("/BoardListServlet")
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

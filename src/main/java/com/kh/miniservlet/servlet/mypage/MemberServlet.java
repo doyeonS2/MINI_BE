@@ -17,8 +17,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import static com.kh.miniservlet.common.Common.FRONT_DOMAIN;
+
 @RestController
-@CrossOrigin(origins = "http://localhost:3000") // 3000번에 대한 cors 허용
+@CrossOrigin(origins = FRONT_DOMAIN) // 3000번에 대한 cors 허용
 public class MemberServlet extends HttpServlet {
     @PostMapping("/MemberServlet") // 이클립스의 서블렛파일에서 쓰는 @WebServlet("/LoginServlet")와 같은 기능
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, IOException {

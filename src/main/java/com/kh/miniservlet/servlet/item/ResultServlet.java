@@ -19,8 +19,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import static com.kh.miniservlet.common.Common.FRONT_DOMAIN;
+
 @RestController
-@CrossOrigin(origins = "http://localhost:3000") // 3000번에 대한 cors 허용
+@CrossOrigin(origins = FRONT_DOMAIN) // 3000번에 대한 cors 허용
 
 
 

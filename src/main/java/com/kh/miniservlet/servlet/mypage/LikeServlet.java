@@ -21,8 +21,10 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import static com.kh.miniservlet.common.Common.FRONT_DOMAIN;
+
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = FRONT_DOMAIN)
 public class LikeServlet extends HttpServlet {
     @PostMapping("/LikeServlet")
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

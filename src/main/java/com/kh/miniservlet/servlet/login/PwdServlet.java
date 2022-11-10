@@ -13,8 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import static com.kh.miniservlet.common.Common.FRONT_DOMAIN;
+
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = FRONT_DOMAIN)
 public class PwdServlet extends HttpServlet {
     @PostMapping("/PwdServlet")
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {

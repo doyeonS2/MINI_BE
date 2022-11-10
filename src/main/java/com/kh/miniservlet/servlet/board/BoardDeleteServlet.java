@@ -19,11 +19,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import static com.kh.miniservlet.common.Common.FRONT_DOMAIN;
 import static java.lang.System.out;
 import static java.lang.System.setOut;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = FRONT_DOMAIN)
 public class BoardDeleteServlet extends HttpServlet {
 
     @PostMapping("/BoardDeleteServlet")

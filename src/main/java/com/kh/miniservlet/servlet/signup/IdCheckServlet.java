@@ -12,9 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import static com.kh.miniservlet.common.Common.FRONT_DOMAIN;
+
 // 도연 작업 완료 - 아이디 중복체크
 @RestController
-@CrossOrigin(origins = "http://localhost:3000") // 3000번에 대한 cors 허용
+@CrossOrigin(origins = FRONT_DOMAIN) // 3000번에 대한 cors 허용
 public class IdCheckServlet extends HttpServlet {
     @PostMapping("/IdCheckServlet")
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {

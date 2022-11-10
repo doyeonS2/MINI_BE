@@ -15,10 +15,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
+import static com.kh.miniservlet.common.Common.FRONT_DOMAIN;
 import static java.lang.System.out;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = FRONT_DOMAIN)
 public class BoardRegServlet extends HttpServlet {
 
     @PostMapping("/BoardRegServlet")

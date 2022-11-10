@@ -18,8 +18,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import static com.kh.miniservlet.common.Common.FRONT_DOMAIN;
+
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = FRONT_DOMAIN)
 public class LikeCntServlet extends HttpServlet {
 
     @PostMapping("/LikeCntServlet")

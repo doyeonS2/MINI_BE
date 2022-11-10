@@ -19,7 +19,9 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
+import static com.kh.miniservlet.common.Common.FRONT_DOMAIN;
+
+@CrossOrigin(origins = FRONT_DOMAIN)
 @RestController
 public class ItemServlet extends HttpServlet {
 

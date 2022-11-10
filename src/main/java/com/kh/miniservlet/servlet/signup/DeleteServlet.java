@@ -12,10 +12,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
+import static com.kh.miniservlet.common.Common.FRONT_DOMAIN;
+
 // 도연 - 회원탈퇴 작업 완료
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = FRONT_DOMAIN)
 public class DeleteServlet extends HttpServlet {
     @PostMapping("/DeleteServlet")
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {

@@ -13,8 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import static com.kh.miniservlet.common.Common.FRONT_DOMAIN;
+
 @RestController
-@CrossOrigin(origins = "http://localhost:3000") // 3000번에 대한 cors 허용
+@CrossOrigin(origins = FRONT_DOMAIN) // 3000번에 대한 cors 허용
 
 public class IdServlet extends HttpServlet {
     @PostMapping("/IdServlet")
