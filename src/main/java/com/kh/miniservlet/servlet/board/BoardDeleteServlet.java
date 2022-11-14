@@ -1,5 +1,4 @@
 package com.kh.miniservlet.servlet.board;
-
 import com.kh.miniservlet.common.Common;
 import com.kh.miniservlet.dao.BoardDAO;
 import com.kh.miniservlet.vo.BoardVO;
